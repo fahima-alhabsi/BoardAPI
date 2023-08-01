@@ -1,13 +1,11 @@
 package com.example.BOARD.API.Models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
+import jakarta.persistence.*;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
-//import org.springframework.data.annotation.Id;
-import jakarta.persistence.Id;
+
+import java.util.List;
 
 
 @Getter
@@ -19,7 +17,11 @@ public class BoardModel extends BaseEntity{
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private Long Id;
+    private Long id;
+
+    @OneToMany(mappedBy = "boardModel", cascade = CascadeType.ALL)
+    private List<CardModel> cards;
+
 
   String name;
 
