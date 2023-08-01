@@ -8,4 +8,16 @@ import org.springframework.stereotype.Service;
 public class CardService {
     @Autowired
     CardRepositry cardRepositry;
+    public void GetOneCard (){
+
+    }
+
+    public void DeleteOneCard(){
+
+    }
+
+    public void UpdateCard (){
+
+    }
+
 }
