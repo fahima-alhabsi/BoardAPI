@@ -12,8 +12,11 @@ import org.springframework.data.annotation.Id;
 @Setter
 @Entity
 @Data
-public class CardModel {
+public class CardModel extends BaseEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     Long id;
+    String title;
+    String  section;
+    String description;
 }
