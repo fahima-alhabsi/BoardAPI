@@ -18,9 +18,11 @@ public class CardService {
     public void GetOneCard (){
 
     }
-public void CreateCard(){
+    public void CreateCard(CardModel newCard ){
 
-}
+        cardRepositry.save(newCard);
+
+    }
 
 
         public List<CardModel> GetAllCards(){
