@@ -1,13 +1,13 @@
 package com.example.BOARD.API.Controllers;
 
 import com.example.BOARD.API.Models.BoardModel;
-import com.example.BOARD.API.RequistObject.GetBoardRequistObject;
 import com.example.BOARD.API.Services.BoardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
+import java.util.Optional;
 
 @RestController
 
@@ -21,14 +21,10 @@ public class BoardController {
         return ResponseEntity.ok(boardService.GetAllBoards());
     }
 
-//    @RequestMapping("api/{boardId}")
-//    public ResponseEntity<?> findAll() {
-//
-//        return ResponseEntity.ok(boardService.GetAllBoards());
-//    }
-
-
-
+    @RequestMapping("api/board/{Id}")
+    public Optional<BoardModel> getBoardById(@PathVariable Long BoardId){
+        return boardService.GetOneBoard(BoardId);
+    }
 
     @PostMapping("/create")
 public void CreateBoard(BoardModel boardModel){

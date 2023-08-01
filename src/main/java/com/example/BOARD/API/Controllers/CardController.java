@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
+import java.util.Optional;
 
 @RestController
 
@@ -15,14 +16,17 @@ public class CardController {
     @Autowired
     CardService cardService ;
 
-    @GetMapping("/getcard")
+    @GetMapping("/getCard")
     public ResponseEntity<?> findAll() {
 
         return ResponseEntity.ok(cardService.GetAllCards());
     }
+    @RequestMapping("api/Card/{Id}")
+    public Optional<CardModel> getCardById(@PathVariable Long CardID){
+        return cardService.GetOneCard(CardID);
+    }
 
-
-    @PostMapping("/createcard")
+    @PostMapping("/createCard")
     public void createCard(CardModel cardModel){
 
         CardModel Card = new CardModel();

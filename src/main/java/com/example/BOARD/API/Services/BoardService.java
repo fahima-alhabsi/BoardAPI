@@ -20,8 +20,6 @@ public List<BoardModel> GetAllBoards(){
 }
 
 public Optional<BoardModel> GetOneBoard(Long boardId){
-
-
 return boardRepositry.findById(boardId);
 
 
