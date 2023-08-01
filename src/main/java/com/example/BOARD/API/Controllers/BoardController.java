@@ -30,12 +30,6 @@ public class BoardController {
 
 
 
-
-
-
-
-
-
     @PostMapping("/create")
 public void CreateBoard(BoardModel boardModel){
 

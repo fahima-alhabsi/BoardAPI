@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CardService {
@@ -15,9 +16,12 @@ public class CardService {
 
 
 
-    public void GetOneCard (){
+    public Optional<CardModel> GetOneCard(Long CardID){
+        return cardRepositry.findById(CardID);
 
     }
+
+
     public void CreateCard(CardModel newCard ){
 
         cardRepositry.save(newCard);
@@ -31,13 +35,20 @@ public class CardService {
         }
 
 
-
-
-    public void DeleteOneCard(){
-
+    public void DeletCard(Long CardID){
+        cardRepositry.delete(cardRepositry.getOne(CardID));
     }
 
-    public void UpdateCard (){
+    public CardModel updateCard(Long id, CardModel updatedCards) {
+
+        CardModel cards = new CardModel();
+        cards.setCardId(id);
+        cards.setDescription("description");
+        cards.setTitle("tilte");
+        cards.setSection("section");
+
+        cardRepositry.save(cards);
+        return cardRepositry.findById(id).get();
 
     }
 
