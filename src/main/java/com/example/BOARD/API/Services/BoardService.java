@@ -8,17 +8,9 @@ import org.springframework.stereotype.Service;
 public class BoardService {
     @Autowired
     BoardRepositry boardRepositry;
-public void SetBoardName(){
-}
 
-public void AddNewCard(){
 
-}
-
-public void GetAllCard(){
-
-}
-public void GetAllBoard(){
+public void GetAllBoards(){
 
 }
 
@@ -27,6 +19,9 @@ public void GetOneBoard(){
 }
 
 public void CreateBoard(){
+
+}
+public void DeletBoard(){
 
 }
 
