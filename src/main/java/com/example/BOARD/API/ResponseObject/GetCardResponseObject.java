@@ -4,5 +4,5 @@ package com.example.BOARD.API.ResponseObject;
 
 
 
-public class CardResponseObject {
+public class GetCardResponseObject {
 }
