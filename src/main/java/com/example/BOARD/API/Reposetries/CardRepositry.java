@@ -1,6 +1,6 @@
-package Reposetries;
+package com.example.BOARD.API.Reposetries;
 
-import Models.CardModel;
+import com.example.BOARD.API.Models.CardModel;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

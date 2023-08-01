@@ -1,6 +1,6 @@
-package Services;
+package com.example.BOARD.API.Services;
 
-import Reposetries.BoardRepositry;
+import com.example.BOARD.API.Reposetries.BoardRepositry;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

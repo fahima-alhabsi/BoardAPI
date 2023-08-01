@@ -1,4 +1,4 @@
-package Models;
+package com.example.BOARD.API.Models;
 
 import jakarta.persistence.MappedSuperclass;
 import lombok.Data;

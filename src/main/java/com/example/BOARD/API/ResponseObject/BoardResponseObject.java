@@ -1,4 +1,4 @@
-package ResponseObject;
+package com.example.BOARD.API.ResponseObject;
 
 
 import lombok.Getter;
