@@ -5,10 +5,7 @@ import com.example.BOARD.API.RequistObject.GetBoardRequistObject;
 import com.example.BOARD.API.Services.BoardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
 
@@ -23,10 +20,11 @@ public class BoardController {
 
         return ResponseEntity.ok(boardService.GetAllBoards());
     }
+    @PostMapping("/create")
+public void CreateBoard(BoardModel boardModel){
 
-public void CreateBoard(GetBoardRequistObject getBoardRequistObject){
 BoardModel Board = new BoardModel();
-    Board.setName("NAME");
+    Board.setName(boardModel.getName());
     Board.setCreatedDate(new Date());
 Board.setIsActive(true);
     boardService.CreateBoard(Board);
@@ -35,6 +33,11 @@ Board.setIsActive(true);
 
 
 
+    @DeleteMapping("/delete/{BoardID}")
+    public void DeletBoard(@PathVariable Long lsitID) {
 
+         boardService.DeletBoard(lsitID);
+
+    }
 
 }

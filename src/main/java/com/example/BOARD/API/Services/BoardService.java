@@ -5,6 +5,7 @@ import com.example.BOARD.API.Models.BoardModel;
 import com.example.BOARD.API.Reposetries.BoardRepositry;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
@@ -31,13 +32,17 @@ public void CreateBoard(BoardModel newBoard ){
 
 }
 public void DeletBoard(Long BoardID){
-    Optional<BoardModel> optionalBoard = boardRepositry.findById(BoardID);
-    if (optionalBoard.isPresent()) {
-        BoardModel Board = optionalBoard.get();
-        boardRepositry.delete(Board);
-    } else {
-        throw new BoardNotFoundException("Board  not found with this ID: " + BoardID);
-    }
+//    Optional<BoardModel> optionalBoard = boardRepositry.findById(BoardID);
+//    if (optionalBoard.isPresent()) {
+//        BoardModel Board = optionalBoard.get();
+        boardRepositry.delete(boardRepositry.getOne(BoardID));
+//    } else {
+//        throw new BoardNotFoundException("Board  not found with this ID: " + BoardID);
+//    }
 }
+
+
+
+
 
 }
