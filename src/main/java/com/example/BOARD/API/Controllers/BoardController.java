@@ -20,6 +20,22 @@ public class BoardController {
 
         return ResponseEntity.ok(boardService.GetAllBoards());
     }
+
+//    @RequestMapping("api/{boardId}")
+//    public ResponseEntity<?> findAll() {
+//
+//        return ResponseEntity.ok(boardService.GetAllBoards());
+//    }
+
+
+
+
+
+
+
+
+
+
     @PostMapping("/create")
 public void CreateBoard(BoardModel boardModel){
 
@@ -30,7 +46,6 @@ Board.setIsActive(true);
     boardService.CreateBoard(Board);
 
 }
-
 
 
     @DeleteMapping("/delete/{BoardID}")

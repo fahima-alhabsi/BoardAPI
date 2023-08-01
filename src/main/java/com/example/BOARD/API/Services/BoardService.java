@@ -1,12 +1,9 @@
 package com.example.BOARD.API.Services;
 
-import com.example.BOARD.API.ErrorsException.BoardNotFoundException;
 import com.example.BOARD.API.Models.BoardModel;
 import com.example.BOARD.API.Reposetries.BoardRepositry;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 import java.util.Optional;
@@ -22,7 +19,11 @@ public List<BoardModel> GetAllBoards(){
 
 }
 
-public void GetOneBoard(){
+public Optional<BoardModel> GetOneBoard(Long boardId){
+
+
+return boardRepositry.findById(boardId);
+
 
 }
 
