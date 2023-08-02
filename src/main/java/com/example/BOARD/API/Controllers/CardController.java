@@ -21,7 +21,7 @@ public class CardController {
 
         return ResponseEntity.ok(cardService.GetAllCards());
     }
-    @RequestMapping("api/Card/{Id}")
+    @RequestMapping("api/Card/{CardID}")
     public Optional<CardModel> getCardById(@PathVariable Long CardID){
         return cardService.GetOneCard(CardID);
     }
@@ -38,9 +38,9 @@ public class CardController {
     }
 
     @DeleteMapping("/deleteCard/{CardID}")
-    public void DeletCard(@PathVariable Long lsitID) {
+    public void DeletCard(@PathVariable Long CardID) {
 
-        cardService.DeletCard(lsitID);
+        cardService.DeletCard(CardID);
 
     }
     @PutMapping("UpdateCard/{Id}")

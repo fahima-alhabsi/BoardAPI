@@ -21,8 +21,9 @@ public class BoardController {
         return ResponseEntity.ok(boardService.GetAllBoards());
     }
 
-    @RequestMapping("api/board/{Id}")
+    @RequestMapping("api/board/{BoardId}")
     public Optional<BoardModel> getBoardById(@PathVariable Long BoardId){
+System.out.println(BoardId);
         return boardService.GetOneBoard(BoardId);
     }
 
@@ -39,9 +40,9 @@ Board.setIsActive(true);
 
 
     @DeleteMapping("/delete/{BoardID}")
-    public void DeletBoard(@PathVariable Long lsitID) {
+    public void DeletBoard(@PathVariable Long BoardID) {
 
-         boardService.DeletBoard(lsitID);
+         boardService.DeletBoard(BoardID);
 
     }
 

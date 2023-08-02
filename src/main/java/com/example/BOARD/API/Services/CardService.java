@@ -41,13 +41,9 @@ public class CardService {
 
     public CardModel updateCard(Long id, CardModel updatedCards) {
 
-        CardModel cards = new CardModel();
-        cards.setCardId(id);
-        cards.setDescription("description");
-        cards.setTitle("tilte");
-        cards.setSection("section");
 
-        cardRepositry.save(cards);
+
+        cardRepositry.save(updatedCards);
         return cardRepositry.findById(id).get();
 
     }
