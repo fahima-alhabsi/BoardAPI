@@ -37,13 +37,13 @@ public class CardController {
 
     }
 
-    @DeleteMapping("/delete/{CardID}")
+    @DeleteMapping("/deleteCard/{CardID}")
     public void DeletCard(@PathVariable Long lsitID) {
 
         cardService.DeletCard(lsitID);
 
     }
-    @PutMapping("/{Id}")
+    @PutMapping("UpdateCard/{Id}")
     public void UpdatedCard(@PathVariable Long Id, @RequestBody CardModel UpdatedCard) {
         cardService.updateCard(Id,UpdatedCard);
 
