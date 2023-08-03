@@ -1,3 +1,7 @@
+
+//functions for Board////
+
+
 function createBoard() {
   var myHeaders = new Headers();
   myHeaders.append("Content-Type", "application/json");
@@ -87,6 +91,130 @@ function deleteBoard(boardId) {
 }
 
 
+//functions for Cards////
 
+function createCard() {
+  var myHeaders = new Headers();
+  myHeaders.append("Content-Type", "application/json");
+
+  var raw = JSON.stringify({
+    "title": document.getElementById("cardTitle").value,
+    "section": document.getElementById("cardSection").value,
+    "description": document.getElementById("cardDescription").value
+  });
+
+  var requestOptions = {
+    method: 'POST',
+    headers: myHeaders,
+    body: raw,
+    redirect: 'follow'
+  };
+
+  fetch("/createCard", requestOptions)
+    .then(response => {
+      if (response.status === 200) {
+        console.log("Card created successfully!");
+      } else {
+        console.log("Failed to create card.");
+      }
+    })
+    .catch(error => console.log('error', error));
+}
+
+
+function getAllCards() {
+  var requestOptions = {
+    method: 'GET',
+    headers: {
+      "Content-Type": "application/json"
+    },
+    redirect: 'follow'
+  };
+
+  fetch("/getCard", requestOptions)
+    .then(response => response.json())
+    .then((result) => {
+      result.forEach(card => {
+        let div = document.getElementById("cardsColumn");
+        div.innerHTML += "<h3 style='color: red'>Card ID: " + card.cardId + "</h3>";
+        div.innerHTML += "Title: " + card.title + "<br />";
+        div.innerHTML += "Section: " + card.section + "<br />";
+        div.innerHTML += "Description: " + card.description + "<br />";
+      });
+    })
+    .catch(error => console.log('error', error));
+}
+
+
+function getCardById(cardId) {
+  var requestOptions = {
+    method: 'GET',
+    headers: {
+      "Content-Type": "application/json"
+    },
+    redirect: 'follow'
+  };
+
+  fetch("/api/Card/" + cardId, requestOptions)
+    .then(response => response.json())
+    .then((result) => {
+      let div = document.getElementById("cardByIdColumn");
+      div.innerHTML = "<h3 style='color: red'>Card ID: " + result.cardId + "</h3>";
+      div.innerHTML += "Title: " + result.title + "<br />";
+      div.innerHTML += "Section: " + result.section + "<br />";
+      div.innerHTML += "Description: " + result.description + "<br />";
+    })
+    .catch(error => console.log('error', error));
+}
+
+
+function deleteCard(cardId) {
+  var requestOptions = {
+    method: 'DELETE',
+    headers: {
+      "Content-Type": "application/json"
+    },
+    redirect: 'follow'
+  };
+
+  fetch("/deleteCard/" + cardId, requestOptions)
+    .then(response => {
+      if (response.status === 200) {
+        console.log("Card deleted successfully!");
+      } else {
+        console.log("Failed to delete card.");
+      }
+    })
+    .catch(error => console.log('error', error));
+}
+
+
+function updateCard(cardId) {
+  var myHeaders = new Headers();
+  myHeaders.append("Content-Type", "application/json");
+
+  var raw = JSON.stringify({
+    "title": document.getElementById("updateCardTitle").value,
+    "section": document.getElementById("updateCardSection").value,
+    "description": document.getElementById("updateCardDescription").value
+  });
+
+  var requestOptions = {
+    method: 'PUT',
+    headers: myHeaders,
+    body: raw,
+    redirect: 'follow'
+  };
+
+  fetch("/UpdateCard/" + cardId, requestOptions)
+    .then(response => {
+      if (response.status === 200) {
+        console.log("Card updated successfully!");
+      } else {
+        console.log("Failed to update card.");
+      }
+    })
+    .catch(error => console.log('error', error));
+}
 
 
