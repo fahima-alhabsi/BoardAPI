@@ -39,7 +39,7 @@ Board.setIsActive(true);
 }
 
 
-    @DeleteMapping("/delete/{BoardID}")
+    @DeleteMapping("//{BoardID}")
     public void DeletBoard(@PathVariable Long BoardID) {
 
          boardService.DeletBoard(BoardID);
