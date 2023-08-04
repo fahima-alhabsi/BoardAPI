@@ -2,9 +2,11 @@ package com.example.BOARD.API.Controllers;
 
 import com.example.BOARD.API.Models.boardModel;
 import com.example.BOARD.API.RequistObject.getBoardRequistObject;
+import com.example.BOARD.API.ResponseObject.deleteResponse;
 import com.example.BOARD.API.ResponseObject.getBoardResponseObject;
 import com.example.BOARD.API.Services.boardService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -38,6 +40,7 @@ public class boardController {
             throw new RuntimeException("Error creating board. Please try again later.");
         }
     }
+
     @GetMapping
     public List<getBoardResponseObject> findAll() {
         List<getBoardResponseObject> allBoards = new ArrayList<>();
@@ -59,7 +62,7 @@ public class boardController {
         return allBoards;
     }
 
-    @RequestMapping("{BoardId}")
+
     public getBoardResponseObject getBoardById(@PathVariable Long BoardId) {
         try {
             boardModel boardModel = BoardService.getOneBoard(BoardId);
@@ -74,12 +77,36 @@ public class boardController {
     }
 
 
+    @DeleteMapping(value = "{BoardId}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public deleteResponse deletBoard(@PathVariable Long BoardId) {
+        if (BoardId == null) {
+            throw new IllegalArgumentException("BoardID cannot be null");
+        }
 
-    @DeleteMapping("delete/{BoardID}")
-    public void deletBoard(@PathVariable Long BoardID) {
-
-         BoardService.deletBoard(BoardID);
-
+        return BoardService.deleteBoard(BoardId);
     }
 
+
+    @PutMapping("{boardId}")
+    public getBoardResponseObject updateBoard(@PathVariable Long boardId, @RequestBody getBoardRequistObject updatedBoard) {
+        getBoardResponseObject getBoardResponseObject = new getBoardResponseObject();
+        try {
+            Optional<boardModel> optionalBoard = Optional.ofNullable(BoardService.getOneBoard(boardId));
+
+            if (optionalBoard.isPresent()) {
+                boardModel boardUpdated = optionalBoard.get();
+                boardUpdated.setTitle(updatedBoard.getTitle());
+                boardUpdated.setUpdatedDate(new Date());
+
+                getBoardResponseObject.setId(boardId);
+                getBoardResponseObject.setColumns(boardUpdated.getColumns());
+                getBoardResponseObject.setTitle(boardUpdated.getTitle());
+
+                BoardService.updateBoard(boardUpdated);
+                return getBoardResponseObject;
+            }
+        } catch (Exception e) {
+           e.getMessage();
+        }
+        return getBoardResponseObject;}
 }
