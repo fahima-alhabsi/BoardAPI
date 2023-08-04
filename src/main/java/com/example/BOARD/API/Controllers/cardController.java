@@ -1,8 +1,7 @@
 package com.example.BOARD.API.Controllers;
 
-import com.example.BOARD.API.Models.BoardModel;
-import com.example.BOARD.API.Models.CardModel;
-import com.example.BOARD.API.Services.CardService;
+import com.example.BOARD.API.Models.cardModel;
+import com.example.BOARD.API.Services.cardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,40 +11,40 @@ import java.util.Optional;
 
 @RestController
 
-public class CardController {
+public class cardController {
     @Autowired
-    CardService cardService ;
+    cardService CardService ;
 
     @GetMapping("/getCard")
     public ResponseEntity<?> findAll() {
 
-        return ResponseEntity.ok(cardService.GetAllCards());
+        return ResponseEntity.ok(CardService.GetAllCards());
     }
     @RequestMapping("api/Card/{CardID}")
-    public Optional<CardModel> getCardById(@PathVariable Long CardID){
-        return cardService.GetOneCard(CardID);
+    public Optional<cardModel> getCardById(@PathVariable Long CardID){
+        return CardService.GetOneCard(CardID);
     }
 
     @PostMapping("/createCard")
-    public void createCard(CardModel cardModel){
+    public void createCard(cardModel cardModel){
 
-        CardModel Card = new CardModel();
+        com.example.BOARD.API.Models.cardModel Card = new cardModel();
         Card.setTitle(cardModel.getTitle());
         Card.setCreatedDate(new Date());
         Card.setIsActive(true);
-        cardService.CreateCard(Card);
+        CardService.CreateCard(Card);
 
     }
 
     @DeleteMapping("/deleteCard/{CardID}")
     public void DeletCard(@PathVariable Long CardID) {
 
-        cardService.DeletCard(CardID);
+        CardService.DeletCard(CardID);
 
     }
     @PutMapping("UpdateCard/{Id}")
-    public void UpdatedCard(@PathVariable Long Id, @RequestBody CardModel UpdatedCard) {
-        cardService.updateCard(Id,UpdatedCard);
+    public void UpdatedCard(@PathVariable Long Id, @RequestBody cardModel UpdatedCard) {
+        CardService.updateCard(Id,UpdatedCard);
 
     }
 

@@ -115,6 +115,7 @@ function createCard() {
     .then (data => {
       if (data) {
         console.log("Card created successfully!");
+        alert ("card created successfully")
       } else {
         console.log("Failed to create card.");
       }

@@ -10,7 +10,7 @@ import java.util.Date;
 @Getter
 @Setter
 @Data
-public class BaseEntity {
+public class baseEntity {
     Date createdDate;
     Date updatedDate;
     Boolean isActive;

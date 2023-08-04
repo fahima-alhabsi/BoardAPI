@@ -5,5 +5,5 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class GetCardRequistObject {
+public class getCardRequistObject {
 }

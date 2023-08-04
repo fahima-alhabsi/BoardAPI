@@ -10,7 +10,7 @@ import jakarta.persistence.Id;
 @Data
 @Entity
 
-public class CardModel extends BaseEntity{
+public class cardModel extends baseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
@@ -18,7 +18,7 @@ public class CardModel extends BaseEntity{
 
     @ManyToOne
     @JoinColumn(name = "id")
-    BoardModel boardModel;
+    com.example.BOARD.API.Models.boardModel boardModel;
 
 
     String title;

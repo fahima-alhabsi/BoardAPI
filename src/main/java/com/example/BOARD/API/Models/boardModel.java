@@ -13,14 +13,14 @@ import java.util.List;
 @Data
 @Entity
 
-public class BoardModel extends BaseEntity{
+public class boardModel extends baseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
     @OneToMany(mappedBy = "boardModel", cascade = CascadeType.ALL)
-    private List<CardModel> cards;
+    private List<cardModel> cards;
 
 
   String name;
