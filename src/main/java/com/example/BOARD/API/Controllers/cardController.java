@@ -20,10 +20,10 @@ public class cardController {
 
         return ResponseEntity.ok(CardService.getAllCards());
     }
-    @RequestMapping("api/Card/{CardID}")
-    public Optional<cardModel> getCardById(@PathVariable Long CardID){
-        return CardService.getOneCard(CardID);
-    }
+//    @RequestMapping("api/Card/{CardID}")
+//    public Optional<cardModel> getCardById(@PathVariable Long CardID){
+//        return CardService.getOneCard(CardID);
+//    }
 
     @PostMapping("/createCard")
     public void createCard(cardModel cardModel){

@@ -15,8 +15,8 @@ public class cardService {
 
 
 
-    public Optional<cardModel> getOneCard(Long CardID){
-        return CardRepositry.findById(CardID);
+    public cardModel getOneCard(Long CardID){
+        return CardRepositry.getReferenceById(CardID);
 
     }
 

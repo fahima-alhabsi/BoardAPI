@@ -18,7 +18,6 @@ public class boardController {
 
 
     @PostMapping
-
     public getBoardResponseObject createBoard(@RequestBody getBoardRequistObject requstedObject) {
         try {
             boardModel Board = new boardModel();
@@ -60,12 +59,19 @@ public class boardController {
         return allBoards;
     }
 
-    @RequestMapping("api/board/{BoardId}")
-    public Optional<boardModel> getBoardById(@PathVariable Long BoardId){
-System.out.println(BoardId);
-        return BoardService.getOneBoard(BoardId);
+    @RequestMapping("{BoardId}")
+    public getBoardResponseObject getBoardById(@PathVariable Long BoardId) {
+        try {
+            boardModel boardModel = BoardService.getOneBoard(BoardId);
+            getBoardResponseObject getBoardResponseObject = new getBoardResponseObject();
+            getBoardResponseObject.setTitle(boardModel.getTitle());
+            getBoardResponseObject.setColumns(boardModel.getColumns());
+            getBoardResponseObject.setId(boardModel.getId());
+            return getBoardResponseObject;
+        } catch (Exception e) {
+            throw new RuntimeException("Error retrieving board: " + e.getMessage(), e);
+        }
     }
-
 
 
 

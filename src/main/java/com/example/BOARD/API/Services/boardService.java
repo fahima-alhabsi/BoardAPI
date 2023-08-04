@@ -34,13 +34,13 @@ public List<boardModel> getAllBoards(){
     return BoardRepositry.findAll();
 
 }
-
-public Optional<boardModel> getOneBoard(Long boardId){
-return BoardRepositry.findById(boardId);
-
-
-}
-
+    public boardModel getOneBoard(Long boardId) {
+        try {
+            return BoardRepositry.getReferenceById(boardId);
+        } catch (Exception e) {
+            throw new RuntimeException("Error retrieving board from repository: " + e.getMessage(), e);
+        }
+    }
 
 public void deletBoard(Long BoardID){
 
