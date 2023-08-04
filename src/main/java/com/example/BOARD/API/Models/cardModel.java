@@ -20,8 +20,6 @@ public class cardModel extends baseEntity {
     @JoinColumn(name = "id")
     boardModel BoardModel;
 
-
-
     String title;
     String  section;
     String description;

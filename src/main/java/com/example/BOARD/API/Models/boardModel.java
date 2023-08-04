@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.util.List;
+import java.util.Map;
 
 
 @Getter
@@ -19,10 +20,10 @@ public class boardModel extends baseEntity {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
-    @OneToMany(mappedBy = "BoardModel", cascade = CascadeType.ALL)
-    private List<cardModel> cards;
-
-
   String name;
-
+    @ElementCollection
+    @CollectionTable(name = "sections", joinColumns = @JoinColumn(name = "id"))
+    @MapKeyColumn(name = "sectionId")
+    @Column(name = "name")
+    private Map<Integer, String> columns;
 }

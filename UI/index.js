@@ -99,8 +99,8 @@ function createCard() {
 
   var raw = JSON.stringify({
     "title": document.getElementById("createTitle").value,
-    "section": document.getElementById("cardSection").value,
-    "description": document.getElementById("cardDescription").value
+    "section": document.getElementById("createSection").value,
+    "description": document.getElementById("createDescription").value
   });
 
   var requestOptions = {
@@ -120,7 +120,7 @@ function createCard() {
         console.log("Failed to create card.");
       }
     })
-    .catch(error => console.log('error', error));
+    .catch(error => console.error('Error:', error))
 }
 
 
