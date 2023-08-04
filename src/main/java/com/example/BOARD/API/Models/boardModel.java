@@ -17,10 +17,10 @@ import java.util.Map;
 public class boardModel extends baseEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-  String name;
+    private String title;
     @ElementCollection
     @CollectionTable(name = "sections", joinColumns = @JoinColumn(name = "id"))
     @MapKeyColumn(name = "sectionId")

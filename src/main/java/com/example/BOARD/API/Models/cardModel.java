@@ -13,15 +13,15 @@ import jakarta.persistence.Id;
 public class cardModel extends baseEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long cardId;
 
     @ManyToOne
     @JoinColumn(name = "id")
-    boardModel BoardModel;
+    private boardModel BoardModel;
 
-    String title;
-    String  section;
-    String description;
+    private String title;
+    private String  section;
+    private String description;
 
 }
