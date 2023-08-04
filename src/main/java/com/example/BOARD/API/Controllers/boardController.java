@@ -8,10 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 @RestController
 @RequestMapping("/api/boards")
@@ -42,10 +39,25 @@ public class boardController {
             throw new RuntimeException("Error creating board. Please try again later.");
         }
     }
-    @GetMapping("get")
-    public ResponseEntity<?> findAll() {
+    @GetMapping
+    public List<getBoardResponseObject> findAll() {
+        List<getBoardResponseObject> allBoards = new ArrayList<>();
 
-        return ResponseEntity.ok(BoardService.getAllBoards());
+        try {
+            List<boardModel> boards = BoardService.getAllBoards();
+
+            for (boardModel board : boards) {
+                getBoardResponseObject getBoardResponseObject = new getBoardResponseObject();
+                getBoardResponseObject.setTitle(board.getTitle());
+                getBoardResponseObject.setColumns(board.getColumns());
+                getBoardResponseObject.setId(board.getId());
+                allBoards.add(getBoardResponseObject);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return allBoards;
     }
 
     @RequestMapping("api/board/{BoardId}")
