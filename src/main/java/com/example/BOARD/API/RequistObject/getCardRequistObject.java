@@ -10,9 +10,9 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class getCardRequistObject {
-    private Long cardId;
+
 
     private String title;
-    private String  section;
+    private int  section;
     private String description;
 }

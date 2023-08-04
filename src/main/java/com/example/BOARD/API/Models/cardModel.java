@@ -21,7 +21,7 @@ public class cardModel extends baseEntity {
     private boardModel BoardModel;
 
     private String title;
-    private String  section;
+    private int  section;
     private String description;
 
 }

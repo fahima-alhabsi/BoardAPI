@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class cardService {
@@ -21,10 +20,9 @@ public class cardService {
     }
 
 
-    public void createCard(cardModel newCard ){
+    public cardModel createCard(cardModel newCard ){
 
-        CardRepositry.save(newCard);
-
+        return CardRepositry.save(newCard);
     }
 
 

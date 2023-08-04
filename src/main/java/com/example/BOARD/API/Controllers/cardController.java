@@ -1,6 +1,9 @@
 package com.example.BOARD.API.Controllers;
 
 import com.example.BOARD.API.Models.cardModel;
+import com.example.BOARD.API.RequistObject.getCardRequistObject;
+import com.example.BOARD.API.ResponseObject.getCardResponseObject;
+import com.example.BOARD.API.Services.boardService;
 import com.example.BOARD.API.Services.cardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -10,10 +13,26 @@ import java.util.Date;
 import java.util.Optional;
 
 @RestController
-
+@RequestMapping("/api/boards/{board_id}/cards")
 public class cardController {
     @Autowired
     cardService CardService ;
+
+    @Autowired
+    boardService BoardService;
+    @PostMapping
+    public getCardResponseObject createCard(@PathVariable Long board_id, @RequestBody getCardRequistObject cardModel){
+
+        cardModel Card = new cardModel();
+        Card.setTitle(cardModel.getTitle());
+        Card.setDescription(cardModel.getDescription());
+        Card.setSection(cardModel.getSection());
+        Card.setCreatedDate(new Date());
+        Card.setIsActive(true);
+        Card.setBoardModel(BoardService.getOneBoard(board_id));
+        cardModel savedCard = CardService.createCard(Card);
+return new getCardResponseObject(savedCard.getCardId(),savedCard.getTitle(),savedCard.getSection(),savedCard.getDescription());
+    }
 
     @GetMapping("/getCard")
     public ResponseEntity<?> findAll() {
@@ -25,16 +44,6 @@ public class cardController {
 //        return CardService.getOneCard(CardID);
 //    }
 
-    @PostMapping("/createCard")
-    public void createCard(cardModel cardModel){
-
-        cardModel Card = new cardModel();
-        Card.setTitle(cardModel.getTitle());
-        Card.setCreatedDate(new Date());
-        Card.setIsActive(true);
-        CardService.createCard(Card);
-
-    }
 
     @DeleteMapping("/deleteCard/{CardID}")
     public void deletCard(@PathVariable Long CardID) {

@@ -14,6 +14,6 @@ import lombok.Setter;
 public class getCardResponseObject {
     private Long cardId;
     private String title;
-    private String  section;
+    private int  section;
     private String description;
 }
