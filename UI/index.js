@@ -98,7 +98,7 @@ function createCard() {
   myHeaders.append("Content-Type", "application/json");
 
   var raw = JSON.stringify({
-    "title": document.getElementById("cardTitle").value,
+    "title": document.getElementById("createTitle").value,
     "section": document.getElementById("cardSection").value,
     "description": document.getElementById("cardDescription").value
   });
@@ -111,8 +111,9 @@ function createCard() {
   };
 
   fetch("/createCard", requestOptions)
-    .then(response => {
-      if (response.status === 200) {
+    .then(response => response.json())
+    .then (data => {
+      if (data) {
         console.log("Card created successfully!");
       } else {
         console.log("Failed to create card.");
