@@ -14,30 +14,26 @@ public class boardService {
     boardRepositry BoardRepositry;
 
 
-public List<boardModel> GetAllBoards(){
+public List<boardModel> getAllBoards(){
     return BoardRepositry.findAll();
 
 }
 
-public Optional<boardModel> GetOneBoard(Long boardId){
+public Optional<boardModel> getOneBoard(Long boardId){
 return BoardRepositry.findById(boardId);
 
 
 }
 
-public void CreateBoard(boardModel newBoard ){
+public void createBoard(boardModel newBoard ){
 
     BoardRepositry.save(newBoard);
 
 }
-public void DeletBoard(Long BoardID){
-//    Optional<BoardModel> optionalBoard = boardRepositry.findById(BoardID);
-//    if (optionalBoard.isPresent()) {
-//        BoardModel Board = optionalBoard.get();
+public void deletBoard(Long BoardID){
+
         BoardRepositry.delete(BoardRepositry.getOne(BoardID));
-//    } else {
-//        throw new BoardNotFoundException("Board  not found with this ID: " + BoardID);
-//    }
+
 }
 
 

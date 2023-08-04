@@ -19,7 +19,7 @@ public class boardModel extends baseEntity {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
-    @OneToMany(mappedBy = "boardModel", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "BoardModel", cascade = CascadeType.ALL)
     private List<cardModel> cards;
 
 

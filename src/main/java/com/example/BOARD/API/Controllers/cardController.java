@@ -18,32 +18,32 @@ public class cardController {
     @GetMapping("/getCard")
     public ResponseEntity<?> findAll() {
 
-        return ResponseEntity.ok(CardService.GetAllCards());
+        return ResponseEntity.ok(CardService.getAllCards());
     }
     @RequestMapping("api/Card/{CardID}")
     public Optional<cardModel> getCardById(@PathVariable Long CardID){
-        return CardService.GetOneCard(CardID);
+        return CardService.getOneCard(CardID);
     }
 
     @PostMapping("/createCard")
     public void createCard(cardModel cardModel){
 
-        com.example.BOARD.API.Models.cardModel Card = new cardModel();
+        cardModel Card = new cardModel();
         Card.setTitle(cardModel.getTitle());
         Card.setCreatedDate(new Date());
         Card.setIsActive(true);
-        CardService.CreateCard(Card);
+        CardService.createCard(Card);
 
     }
 
     @DeleteMapping("/deleteCard/{CardID}")
-    public void DeletCard(@PathVariable Long CardID) {
+    public void deletCard(@PathVariable Long CardID) {
 
-        CardService.DeletCard(CardID);
+        CardService.deletCard(CardID);
 
     }
     @PutMapping("UpdateCard/{Id}")
-    public void UpdatedCard(@PathVariable Long Id, @RequestBody cardModel UpdatedCard) {
+    public void updatedCard(@PathVariable Long Id, @RequestBody cardModel UpdatedCard) {
         CardService.updateCard(Id,UpdatedCard);
 
     }

@@ -15,26 +15,26 @@ public class cardService {
 
 
 
-    public Optional<cardModel> GetOneCard(Long CardID){
+    public Optional<cardModel> getOneCard(Long CardID){
         return CardRepositry.findById(CardID);
 
     }
 
 
-    public void CreateCard(cardModel newCard ){
+    public void createCard(cardModel newCard ){
 
         CardRepositry.save(newCard);
 
     }
 
 
-        public List<cardModel> GetAllCards(){
+        public List<cardModel> getAllCards(){
             return CardRepositry.findAll();
 
         }
 
 
-    public void DeletCard(Long CardID){
+    public void deletCard(Long CardID){
         CardRepositry.delete(CardRepositry.getOne(CardID));
     }
 

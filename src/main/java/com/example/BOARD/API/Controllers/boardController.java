@@ -18,31 +18,31 @@ public class boardController {
     @GetMapping("get")
     public ResponseEntity<?> findAll() {
 
-        return ResponseEntity.ok(BoardService.GetAllBoards());
+        return ResponseEntity.ok(BoardService.getAllBoards());
     }
 
     @RequestMapping("api/board/{BoardId}")
     public Optional<boardModel> getBoardById(@PathVariable Long BoardId){
 System.out.println(BoardId);
-        return BoardService.GetOneBoard(BoardId);
+        return BoardService.getOneBoard(BoardId);
     }
 
     @PostMapping("/create")
-public void CreateBoard(boardModel boardModel){
+public void createBoard(boardModel boardModel){
 
-com.example.BOARD.API.Models.boardModel Board = new boardModel();
+        boardModel Board = new boardModel();
     Board.setName(boardModel.getName());
     Board.setCreatedDate(new Date());
 Board.setIsActive(true);
-    BoardService.CreateBoard(Board);
+    BoardService.createBoard(Board);
 
 }
 
 
     @DeleteMapping("delete/{BoardID}")
-    public void DeletBoard(@PathVariable Long BoardID) {
+    public void deletBoard(@PathVariable Long BoardID) {
 
-         BoardService.DeletBoard(BoardID);
+         BoardService.deletBoard(BoardID);
 
     }
 

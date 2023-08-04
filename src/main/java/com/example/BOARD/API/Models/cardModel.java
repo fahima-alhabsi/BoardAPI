@@ -18,7 +18,8 @@ public class cardModel extends baseEntity {
 
     @ManyToOne
     @JoinColumn(name = "id")
-    com.example.BOARD.API.Models.boardModel boardModel;
+    boardModel BoardModel;
+
 
 
     String title;
