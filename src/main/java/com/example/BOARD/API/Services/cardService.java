@@ -1,5 +1,6 @@
 package com.example.BOARD.API.Services;
 
+import com.example.BOARD.API.ErrorsException.cardNotFoundException;
 import com.example.BOARD.API.Models.cardModel;
 import com.example.BOARD.API.Reposetries.cardRepositry;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,17 +14,11 @@ public class cardService {
     cardRepositry CardRepositry;
 
 
-
-    public cardModel getOneCard(Long CardID){
-        return CardRepositry.getReferenceById(CardID);
-
-    }
-
-
     public cardModel createCard(cardModel newCard ){
 
         return CardRepositry.save(newCard);
     }
+
 
 
         public List<cardModel> getAllCards(){
@@ -32,13 +27,22 @@ public class cardService {
         }
 
 
+    public cardModel getOneCard(Long cardId) {
+        return CardRepositry.findById(cardId)
+                .orElseThrow(() -> new cardNotFoundException("Card with ID " + cardId + " not found."));
+    }
+
+
+
+
     public void deletCard(Long CardID){
+
         CardRepositry.delete(CardRepositry.getOne(CardID));
     }
 
+
+
     public cardModel updateCard(Long id, cardModel updatedCards) {
-
-
 
         CardRepositry.save(updatedCards);
         return CardRepositry.findById(id).get();
