@@ -21,18 +21,23 @@ public class cardController {
     @Autowired
     boardService BoardService;
     @PostMapping
-    public getCardResponseObject createCard(@PathVariable Long board_id, @RequestBody getCardRequistObject cardModel){
+    public getCardResponseObject createCard(@PathVariable Long board_id, @RequestBody getCardRequistObject cardModel) {
+        try {
+            cardModel Card = new cardModel();
+            Card.setTitle(cardModel.getTitle());
+            Card.setDescription(cardModel.getDescription());
+            Card.setSection(cardModel.getSection());
+            Card.setCreatedDate(new Date());
+            Card.setIsActive(true);
+            Card.setBoardModel(BoardService.getOneBoard(board_id));
+            cardModel savedCard = CardService.createCard(Card);
+            return new getCardResponseObject(savedCard.getCardId(), savedCard.getTitle(), savedCard.getSection(), savedCard.getDescription());
+        } catch (Exception e) {
 
-        cardModel Card = new cardModel();
-        Card.setTitle(cardModel.getTitle());
-        Card.setDescription(cardModel.getDescription());
-        Card.setSection(cardModel.getSection());
-        Card.setCreatedDate(new Date());
-        Card.setIsActive(true);
-        Card.setBoardModel(BoardService.getOneBoard(board_id));
-        cardModel savedCard = CardService.createCard(Card);
-return new getCardResponseObject(savedCard.getCardId(),savedCard.getTitle(),savedCard.getSection(),savedCard.getDescription());
+            throw e;
+        }
     }
+
 
     @GetMapping("/getCard")
     public ResponseEntity<?> findAll() {
