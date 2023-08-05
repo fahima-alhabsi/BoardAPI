@@ -42,11 +42,26 @@ public class cardService {
 
 
 
-    public cardModel updateCard(Long id, cardModel updatedCards) {
-
-        CardRepositry.save(updatedCards);
-        return CardRepositry.findById(id).get();
-
+    public cardModel updateCard(Long cardId, cardModel updatedCard) {
+        cardModel card = getOneCard(cardId);
+        card.setTitle(updatedCard.getTitle());
+        card.setSection(updatedCard.getSection());
+        card.setDescription(updatedCard.getDescription());
+        return CardRepositry.save(card);
     }
+
+
+
+
+
+
+
+
+//    public cardModel updateCard(Long id, cardModel updatedCards) {
+//
+//        CardRepositry.save(updatedCards);
+//        return CardRepositry.findById(id).get();
+//
+//    }
 
 }

@@ -104,17 +104,35 @@ public class cardController {
 
 
 
-    @DeleteMapping("/deleteCard/{CardID}")
-    public void deletCard(@PathVariable Long CardID) {
-
-        CardService.deletCard(CardID);
-
+    @PutMapping("/{card_id}")
+    public getCardResponseObject updateCard(@PathVariable Long board_id, @PathVariable Long card_id, @RequestBody cardModel updatedCard) {
+        try {
+            cardModel card = CardService.updateCard(card_id, updatedCard);
+            getCardResponseObject cardResponseObject = new getCardResponseObject();
+            cardResponseObject.setCardId(card.getCardId());
+            cardResponseObject.setTitle(card.getTitle());
+            cardResponseObject.setSection(card.getSection());
+            cardResponseObject.setDescription(card.getDescription());
+            return cardResponseObject;
+        } catch (cardNotFoundException e) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage(), e);
+        } catch (Exception e) {
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "An error occurred while processing the request.", e);
+        }
     }
-    @PutMapping("UpdateCard/{Id}")
-    public void updatedCard(@PathVariable Long Id, @RequestBody cardModel UpdatedCard) {
-        CardService.updateCard(Id,UpdatedCard);
 
-    }
+
+//    @DeleteMapping("/deleteCard/{CardID}")
+//    public void deletCard(@PathVariable Long CardID) {
+//
+//        CardService.deletCard(CardID);
+//
+//    }
+//    @PutMapping("UpdateCard/{Id}")
+//    public void updatedCard(@PathVariable Long Id, @RequestBody cardModel UpdatedCard) {
+//        CardService.updateCard(Id,UpdatedCard);
+//
+//    }
 
 
 }
