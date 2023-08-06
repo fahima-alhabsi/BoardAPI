@@ -21,8 +21,8 @@ public class cardService {
 
 
 
-        public List<cardModel> getAllCards(){
-            return CardRepositry.findAll();
+        public List<cardModel> getAllCards(Long id){
+            return CardRepositry.findcards(id);
 
         }
 

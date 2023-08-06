@@ -49,7 +49,7 @@ public class cardController {
         List<getCardResponseObject> allCards = new ArrayList<>();
 
         try {
-            List<cardModel> cards = CardService.getAllCards();
+            List<cardModel> cards = CardService.getAllCards(board_id);
 
             for (cardModel card : cards) {
                 getCardResponseObject cardResponseObject = new getCardResponseObject();
