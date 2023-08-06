@@ -15,11 +15,16 @@ fetch("http://localhost:8080/api/boards/2/cards", requestOptions)
   .then((result) =>{
     result.forEach(card => {
       const deleteOptions = document.getElementById('deleteExistingCard');
+      const updateExistingCard = document.getElementById('updateExistingCard');
 
       const option1= document.createElement('option');
       option1.value = card.cardId;
       option1.textContent = 'Card ID:' + card.cardId;
+      const option2= document.createElement('option');
+      option2.value = card.cardId;
+      option2.textContent = 'Card ID:' + card.cardId;
       deleteOptions.appendChild(option1);
+      updateExistingCard.appendChild(option2);
       createCard(card.cardId,card.title,card.section,card.description)
     })
   })
@@ -240,32 +245,31 @@ function deleteCard() {
 }
 
 
-function updateCard(cardId) {
+function updateCard() {
+  cardId = document.getElementById("updateExistingCard").value
+
   var myHeaders = new Headers();
-  myHeaders.append("Content-Type", "application/json");
+myHeaders.append("Content-Type", "application/json");
+alert(cardId+document.getElementById("updateTitle").value+document.getElementById("updateSection").value+
+document.getElementById("updateDescription").value)
+var raw = JSON.stringify({
+  "cardId": cardId,
+  "title": document.getElementById("updateTitle").value,
+  "section":document.getElementById("updateSection").value,
+  "description": document.getElementById("updateDescription").value
+});
 
-  var raw = JSON.stringify({
-    "title": document.getElementById("updateCardTitle").value,
-    "section": document.getElementById("updateCardSection").value,
-    "description": document.getElementById("updateCardDescription").value
-  });
+var requestOptions = {
+  method: 'PUT',
+  headers: myHeaders,
+  body: raw,
+  redirect: 'follow'
+};
 
-  var requestOptions = {
-    method: 'PUT',
-    headers: myHeaders,
-    body: raw,
-    redirect: 'follow'
-  };
-
-  fetch("/UpdateCard/" + cardId, requestOptions)
-    .then(response => {
-      if (response.status === 200) {
-        console.log("Card updated successfully!");
-      } else {
-        console.log("Failed to update card.");
-      }
-    })
-    .catch(error => console.log('error', error));
+fetch("http://localhost:8080/api/boards/2/cards/"+cardId, requestOptions)
+  .then(response => response.text())
+  .then(result => console.log(result))
+  .catch(error => console.log('error', error));
 }
 
 
