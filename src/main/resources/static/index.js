@@ -41,14 +41,15 @@ var requestOptions = {
   headers: myHeaders,
   redirect: 'follow'
 };
-
+const deleteOptions = document.getElementById('deleteExistingCard');
+const updateExistingCard = document.getElementById('updateExistingCard');
+deleteOptions.innerHTML=""
+updateExistingCard.innerHTML=""
 fetch("http://localhost:8080/api/boards/"+document.getElementById('boardsInfo').value.trim()+"/cards", requestOptions)
   .then((response) => {return response.json()})
   .then((resultt) =>{
     resultt.forEach(card => {
-      const deleteOptions = document.getElementById('deleteExistingCard');
-      const updateExistingCard = document.getElementById('updateExistingCard');
-
+     
       const option1= document.createElement('option');
       option1.value = card.cardId;
       option1.textContent = 'Card ID:' + card.cardId;
@@ -247,3 +248,23 @@ fetch("http://localhost:8080/api/boards/"+document.getElementById('boardsInfo').
 }
 
 
+function updateBoardTtile(){
+  var myHeaders = new Headers();
+myHeaders.append("Content-Type", "application/json");
+
+var raw = JSON.stringify({
+  "title":document.getElementById('newTitle').value
+});
+
+var requestOptions = {
+  method: 'PUT',
+  headers: myHeaders,
+  body: raw,
+  redirect: 'follow'
+};
+
+fetch("http://localhost:8080/api/boards/"+document.getElementById('boardsInfo').value.trim(), requestOptions)
+  .then(response => response.text())
+  .then(result => console.log(result))
+  .catch(error => console.log('error', error));
+}

@@ -1,5 +1,6 @@
 package com.example.BOARD.API.Services;
 
+import com.example.BOARD.API.ErrorsException.boardNotFoundException;
 import com.example.BOARD.API.ErrorsException.cardNotFoundException;
 import com.example.BOARD.API.Models.boardModel;
 import com.example.BOARD.API.Models.cardModel;
@@ -18,39 +19,70 @@ public class cardService {
     boardRepositry BoardRepositry;
 
     public cardModel createCard(cardModel newCard) {
-
-        return CardRepositry.save(newCard);
+        try {
+            return CardRepositry.save(newCard);
+        } catch (Exception e) {
+            throw new cardNotFoundException("Error while creating the card: " + e.getMessage());
+        }
     }
+
 
 
     public List<cardModel> getAllCards(Long id) {
-        return CardRepositry.findcards(id);
-
+        List<cardModel> cards = CardRepositry.findcards(id);
+        if (cards.isEmpty()) {
+            throw new cardNotFoundException("No cards found for the given id: " + id);
+        }
+        return cards;
     }
+
 
 
     public cardModel getOneCard(Long boardId, Long cardId) {
-        return CardRepositry.findOneCard(boardId, cardId);
+        cardModel card = CardRepositry.findOneCard(boardId, cardId);
+        if (card == null) {
+            throw new cardNotFoundException("Card with id " + cardId + " not found in board with id " + boardId);
+        }
+        return card;
     }
 
-    public void deletCard(Long boardId, Long CardID) {
+
+
+
+    public void deletCard(Long boardId, Long cardId) {
         boardModel board = BoardRepositry.getReferenceById(boardId);
         if (board != null) {
-            CardRepositry.delete(CardRepositry.getOne(CardID));
+            cardModel card = CardRepositry.getOne(cardId);
+            if (card == null) {
+                throw new cardNotFoundException("Card with id " + cardId + " not found");
+            }
+            CardRepositry.delete(card);
+        } else {
+            throw new boardNotFoundException("Board with id " + boardId + " not found");
         }
     }
+
+
+
 
 
     public cardModel updateCard(Long boardId, Long cardId, cardModel updatedCard) {
         boardModel board = BoardRepositry.getReferenceById(boardId);
         if (board != null) {
-            cardModel card = CardRepositry.getReferenceById(cardId);
+            cardModel card = CardRepositry.getOne(cardId);
+            if (card == null) {
+                throw new cardNotFoundException("Card with id " + cardId + " not found");
+            }
+
+            // Update the card properties with the updated values
             card.setTitle(updatedCard.getTitle());
             card.setSection(updatedCard.getSection());
             card.setDescription(updatedCard.getDescription());
+
             return CardRepositry.save(card);
+        } else {
+            throw new boardNotFoundException("Board with id " + boardId + " not found");
         }
-        return updatedCard;
     }
 
 }
@@ -60,11 +92,6 @@ public class cardService {
 
 
 
-//    public cardModel updateCard(Long id, cardModel updatedCards) {
-//
-//        CardRepositry.save(updatedCards);
-//        return CardRepositry.findById(id).get();
-//
-//    }
+
 
 
