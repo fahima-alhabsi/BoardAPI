@@ -89,7 +89,7 @@ public class cardController {
     @DeleteMapping("/{card_id}")
     public deleteResponse deleteCard(@PathVariable Long board_id, @PathVariable Long card_id) {
         try {
-            CardService.deletCard(card_id);
+            CardService.deletCard(board_id,card_id);
             deleteResponse response = new deleteResponse();
             response.setMessage("Card with ID " + card_id + " has been deleted successfully.");
             response.setSuccessful(true);
@@ -106,8 +106,10 @@ public class cardController {
 
     @PutMapping("/{card_id}")
     public getCardResponseObject updateCard(@PathVariable Long board_id, @PathVariable Long card_id, @RequestBody cardModel updatedCard) {
+
+
         try {
-            cardModel card = CardService.updateCard(card_id, updatedCard);
+            cardModel card = CardService.updateCard(board_id,card_id, updatedCard);
             getCardResponseObject cardResponseObject = new getCardResponseObject();
             cardResponseObject.setCardId(card.getCardId());
             cardResponseObject.setTitle(card.getTitle());
@@ -122,17 +124,7 @@ public class cardController {
     }
 
 
-//    @DeleteMapping("/deleteCard/{CardID}")
-//    public void deletCard(@PathVariable Long CardID) {
-//
-//        CardService.deletCard(CardID);
-//
-//    }
-//    @PutMapping("UpdateCard/{Id}")
-//    public void updatedCard(@PathVariable Long Id, @RequestBody cardModel UpdatedCard) {
-//        CardService.updateCard(Id,UpdatedCard);
-//
-//    }
+
 
 
 }
