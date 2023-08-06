@@ -33,6 +33,13 @@
     <!-- Top bar with title and update button -->
     <div class="top-bar">
         <h1>Sprint Board 2023</h1>
+        <div >
+            <button class="action-button" onclick="getBoardId()">Board info</button>
+            <select class="select-section" id="boardsInfo">
+                
+            </select>
+
+        </div>
         <div class="update-title">
             <input type="text" id="newTitle" placeholder="Enter a new title">
             <button onclick="updateTitle()">Update</button>
@@ -44,19 +51,21 @@
 
     
     <div class="board">
-    
+    <div><h3  class="header">to do</h3>
             <div id="1" class="column">
-<h3  class="header">to do</h3>
 
+</div>
             </div>
+            <div>  <h3  class="header">in progress</h3>
             <div id="2" class="column">
-                <h3  class="header">in progress</h3>
               
-            </div>
+              
+            </div></div>
+            <div>  <h3  class="header">done</h3>
             <div id="3" class="column">
-                <h3  class="header">done</h3>
+              
                 
-            </div>
+            </div></div>
         </div>
   
 
