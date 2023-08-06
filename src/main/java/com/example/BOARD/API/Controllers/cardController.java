@@ -71,7 +71,7 @@ public class cardController {
     @GetMapping("/{card_id}")
     public getCardResponseObject getOneCard(@PathVariable Long board_id, @PathVariable Long card_id) {
         try {
-            cardModel card = CardService.getOneCard(card_id);
+            cardModel card = CardService.getOneCard(board_id,card_id);
 
 
             getCardResponseObject cardResponseObject = new getCardResponseObject();

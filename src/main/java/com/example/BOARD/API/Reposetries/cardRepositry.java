@@ -13,6 +13,8 @@ public interface cardRepositry extends JpaRepository<cardModel, Long> {
     @Query("SELECT card FROM cardModel card WHERE card.BoardModel.id = :boardid")
     List<cardModel> findcards(@Param("boardid") Long boardid);
 
+    @Query("SELECT card FROM cardModel card WHERE card.BoardModel.id = :boardid AND card.cardId = :cardId")
+    cardModel findOneCard(@Param("boardid") Long boardid,@Param("cardId") Long cardID);
 
 
 

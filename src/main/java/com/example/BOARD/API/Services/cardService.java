@@ -27,13 +27,9 @@ public class cardService {
         }
 
 
-    public cardModel getOneCard(Long cardId) {
-        return CardRepositry.findById(cardId)
-                .orElseThrow(() -> new cardNotFoundException("Card with ID " + cardId + " not found."));
+    public cardModel getOneCard(Long boardId,Long cardId) {
+        return CardRepositry.findOneCard(boardId,cardId);
     }
-
-
-
 
     public void deletCard(Long CardID){
 
@@ -43,7 +39,7 @@ public class cardService {
 
 
     public cardModel updateCard(Long cardId, cardModel updatedCard) {
-        cardModel card = getOneCard(cardId);
+        cardModel card = CardRepositry.getReferenceById(cardId);
         card.setTitle(updatedCard.getTitle());
         card.setSection(updatedCard.getSection());
         card.setDescription(updatedCard.getDescription());

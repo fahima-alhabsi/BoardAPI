@@ -62,7 +62,7 @@ public class boardController {
         return allBoards;
     }
 
-
+    @GetMapping("/{BoardId}")
     public getBoardResponseObject getBoardById(@PathVariable Long BoardId) {
         try {
             boardModel boardModel = BoardService.getOneBoard(BoardId);
