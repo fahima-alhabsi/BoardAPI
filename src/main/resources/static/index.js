@@ -1,6 +1,6 @@
 //fucntion to get card
 
-
+document.getElementById("boardApiName").innerText="choose board :"
 
 var requestOptionss = {
   method: 'GET',
@@ -61,7 +61,7 @@ fetch("http://localhost:8080/api/boards/"+document.getElementById('boardsInfo').
     })
   })
   .catch(error => console.log('error', error));
-
+SetName()
 
 }
 
@@ -69,7 +69,28 @@ fetch("http://localhost:8080/api/boards/"+document.getElementById('boardsInfo').
  
 
 
+function SetName(){
+  var myHeaders = new Headers();
+myHeaders.append("Content-Type", "application/json");
 
+
+
+var requestOptions = {
+  method: 'GET',
+  headers: myHeaders,
+ 
+  redirect: 'follow'
+};
+
+fetch("http://localhost:8080/api/boards/"+document.getElementById('boardsInfo').value.trim(), requestOptions)
+.then((response) => {return response.json()})
+  .then((result) =>{ 
+    console.log(result)
+    document.getElementById("boardApiName").innerText=result.title
+    
+    console.log(result)})
+  .catch(error => console.log('error', error));
+}
 
 
   function createCard(cardId, title, SECTION, description) {
