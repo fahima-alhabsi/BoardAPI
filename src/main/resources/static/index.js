@@ -1,5 +1,58 @@
+///function to get card
+var myHeaders = new Headers();
+myHeaders.append("Content-Type", "application/json");
+const tasks = []
 
-//functions for Board////
+
+var requestOptions = {
+  method: 'GET',
+  headers: myHeaders,
+  redirect: 'follow'
+};
+
+fetch("http://localhost:8080/api/boards/2/cards", requestOptions)
+  .then((response) => {return response.json()})
+  .then((result) =>{
+    result.forEach(card => {
+      createCard(card.cardId,card.title,card.section,card.description)
+    })
+  })
+  .catch(error => console.log('error', error));
+
+
+  function createCard(cardId, title, SECTION, description) {
+    const cardDiv = document.createElement('div');
+    cardDiv.className = 'card';
+
+    const h3CardId = document.createElement('h3');
+    h3CardId.textContent = 'Card ID: ' + cardId;
+    cardDiv.appendChild(h3CardId);
+
+    const h4Title = document.createElement('h4');
+    h4Title.textContent = 'Title: ' + title;
+    cardDiv.appendChild(h4Title);
+
+    const pDescription = document.createElement('p');
+    pDescription.textContent = 'Description: ' + description;
+    cardDiv.appendChild(pDescription);
+
+
+    column1 =document.getElementById('1')
+    column2 =document.getElementById('2')
+    column3 =document.getElementById('3')
+   if(SECTION =='1'){
+    column1.appendChild(cardDiv);
+   }
+   else if(SECTION =='2'){
+    column2.appendChild(cardDiv);
+   }
+else if(SECTION =='3'){
+  column3.appendChild(cardDiv);
+}
+
+}
+
+
 
 
 function createBoard() {
@@ -89,38 +142,28 @@ function deleteBoard(boardId) {
     })
     .catch(error => console.log('error', error));
 }
-
-
-//functions for Cards////
-
-function createCard() {
+function addCard(){
   var myHeaders = new Headers();
   myHeaders.append("Content-Type", "application/json");
-
+  
   var raw = JSON.stringify({
-    "title": document.getElementById("createTitle").value,
-    "section": document.getElementById("createSection").value,
-    "description": document.getElementById("createDescription").value
+    "title": document.getElementById('createTitle').value,
+    "description":  document.getElementById('createDescription').value,
+    "section":  document.getElementById('createSection').value
   });
-
+  
   var requestOptions = {
     method: 'POST',
     headers: myHeaders,
     body: raw,
     redirect: 'follow'
   };
+  
+  fetch("http://localhost:8080/api/boards/2/cards", requestOptions)
+    .then(response => response.text())
+    .then(result => console.log(result))
+    .catch(error => console.log('error', error));
 
-  fetch("/createCard", requestOptions)
-    .then(response => response.json())
-    .then (data => {
-      if (data) {
-        console.log("Card created successfully!");
-        alert ("card created successfully")
-      } else {
-        console.log("Failed to create card.");
-      }
-    })
-    .catch(error => console.error('Error:', error))
 }
 
 

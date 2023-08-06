@@ -40,82 +40,50 @@
     </div>
 
   
-
+   
 
     
     <div class="board">
-        <table>
-            <tr>
-                <th>TO DO</th>
-                <th>IN PROGRESS</th>
-                <th>DONE</th>
-            </tr>
-            <tr>
-           
-                <td>
-                    <div class="card">
-                        <h3>Card ID: 1</h3>
-                        <h4>Title: Task 1</h4>
-                        <p>Description: This is the description for Task 1.</p>
-                    </div>
-                </td>
-                <td>
-                    <div class="card">
-                        <h3>Card ID: 2</h3>
-                        <h4>Title: Task 2</h4>
-                        <p>Description: This is the description for Task 2.</p>
-                    </div>
-                </td>
-                <td>
-                    <div class="card">
-                        <h3>Card ID: 3</h3>
-                        <h4>Title: Task 3</h4>
-                        <p>Description: This is the description for Task 3.</p>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-               
-                <td>
-                    <div class="card">
-                        <h3>Card ID: 4</h3>
-                        <h4>Title: Task 4</h4>
-                        <p>Description: This is the description for Task 4.</p>
-                    </div>
-                </td>
-                <td>
-                    <div class="card">
-                        <h3>Card ID: 5</h3>
-                        <h4>Title: Task 5</h4>
-                        <p>Description: This is the description for Task 5.</p>
-                    </div>
-                </td>
-                <td>
-                    <div class="card">
-                        <h3>Card ID: 6</h3>
-                        <h4>Title: Task 6</h4>
-                        <p>Description: This is the description for Task 6.</p>
-                    </div>
-                </td>
-            </tr>
-        </table>
-    </div>
+    
+            <div id="1" class="column">
+<h3  class="header">to do</h3>
+
+            </div>
+            <div id="2" class="column">
+                <h3  class="header">in progress</h3>
+              
+            </div>
+            <div id="3" class="column">
+                <h3  class="header">done</h3>
+                
+            </div>
+        </div>
+  
+
+
+
+
+
+
+
+<div class="column">
+
     <td>
     <div class="Control-Panel">
-            <h3>Control Panel</h3>
+            <h3 class="header">Control Panel</h3>
 
             
         </div>
         </td>
-            <form>
+            <form id="createCard">
             <div>
-                <button class="action-button" onclick="createCard()">Create</button>
+                <button class="action-button" onclick="addCard()">Create</button>
                 <input class="input-field" type="text" id="createTitle" placeholder="Enter Title">
                 <input class="input-field" type="text" id="createDescription" placeholder="Enter Description">
                 <select class="select-section" id="createSection">
-                    <option value="TO DO">TO DO</option>
-                    <option value="IN PROGRESS">IN PROGRESS</option>
-                    <option value="DONE">DONE</option>
+                    <option value="1">TO DO</option>
+                    <option value="2">IN PROGRESS</option>
+                    <option value="3">DONE</option>
                 </select>
             </div>
         </form>
@@ -141,11 +109,7 @@
                     <option value="DONE">DONE</option>
                 </select>
             </div>
-
-    <div id="popup" class="popup">
-        <div class="popup-content" id="popup-content">
         </div>
-    </div>
 
 
     <script type="text/javascript" src="index.js"></script>

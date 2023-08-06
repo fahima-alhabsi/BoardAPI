@@ -30,18 +30,22 @@
         }
 
         .board {
-            margin-top: 40x;
+            display: flex;
+            justify-content: space-between;
         }
 
      
-        table {
-            width: 100%;
-            border-collapse: collapse;
+        .column {
+            padding: 10px;
+            border: 1px solid lightgrey;
+    
+
         }
 
-        th, td {
-            padding: 10px;
-            border: 1px solid #f59e9e;
+        .header{
+            border-radius: 10px;
+    background-color: #69f96f;
+    padding: 10px;
         }
 
        
