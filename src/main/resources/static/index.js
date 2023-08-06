@@ -14,6 +14,12 @@ fetch("http://localhost:8080/api/boards/2/cards", requestOptions)
   .then((response) => {return response.json()})
   .then((result) =>{
     result.forEach(card => {
+      const deleteOptions = document.getElementById('deleteExistingCard');
+
+      const option1= document.createElement('option');
+      option1.value = card.cardId;
+      option1.textContent = 'Card ID:' + card.cardId;
+      deleteOptions.appendChild(option1);
       createCard(card.cardId,card.title,card.section,card.description)
     })
   })
@@ -213,23 +219,23 @@ function getCardById(cardId) {
 }
 
 
-function deleteCard(cardId) {
+function deleteCard() {
+  cardId = document.getElementById("deleteExistingCard").value
+  var myHeaders = new Headers();
+  myHeaders.append("Content-Type", "application/json");
+  
+
+  
   var requestOptions = {
     method: 'DELETE',
-    headers: {
-      "Content-Type": "application/json"
-    },
+    headers: myHeaders,
+
     redirect: 'follow'
   };
-
-  fetch("/deleteCard/" + cardId, requestOptions)
-    .then(response => {
-      if (response.status === 200) {
-        console.log("Card deleted successfully!");
-      } else {
-        console.log("Failed to delete card.");
-      }
-    })
+  
+  fetch("http://localhost:8080/api/boards/2/cards/"+cardId, requestOptions)
+    .then(response => response.text())
+    .then(result => console.log(result))
     .catch(error => console.log('error', error));
 }
 
