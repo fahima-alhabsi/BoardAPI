@@ -10,8 +10,8 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background-color: #f1f1f1;
-            padding: 10px;
+            background-color: #eeeeeb;
+            padding: 20px;
         }
 
         .top-bar h1 {
@@ -37,24 +37,24 @@
      
         .column {
             padding: 10px;
-            border: 1px solid lightgrey;
+            border: 1px solid rgb(243, 231, 124);
     
 
         }
 
         .header{
             border-radius: 10px;
-    background-color: #1d5f1f;
+    background-color: #7e5e7e;
     padding: 10px;
         }
 
        
         .card {
-            background-color: #fff;
-            border: 1px solid #ccc;
+            background-color: #f3dd7d;
+            border: 1px solid #7f588b;
             padding: 10px;
             margin-bottom: 10px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 2px 4px rgba(98, 5, 110, 0.637);
         }
         
 
@@ -68,7 +68,7 @@
         }
 
         .action-button {
-            background-color: #4CAF50;
+            background-color: #72726c;
             color: #fff;
             border: none;
             padding: 5px 10px;
@@ -78,7 +78,7 @@
         .input-field {
             padding: 5px;
             margin-right: 5px;
-            border: 1px solid #ccc;
+            border: 1px solid #dfb6e7;
         }
 
         .select-section {
