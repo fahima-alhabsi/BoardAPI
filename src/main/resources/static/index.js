@@ -1,6 +1,8 @@
 //fucntion to get card
 
-document.getElementById("boardApiName").innerText="choose board :"
+
+
+document.getElementById("boardApiName").innerText="Choose Board ID:"
 
 var requestOptionss = {
   method: 'GET',
@@ -268,3 +270,4 @@ fetch("http://localhost:8080/api/boards/"+document.getElementById('boardsInfo').
   .then(result => console.log(result))
   .catch(error => console.log('error', error));
 }
+
