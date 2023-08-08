@@ -4,7 +4,7 @@
 
 document.getElementById("boardApiName").innerText="Choose Board ID:"
 
-var requestOptionss = {
+const requestOptionss = {
   method: 'GET',
   redirect: 'follow'
 };
@@ -38,7 +38,7 @@ myHeaders.append("Content-Type", "application/json");
 
 
 
-var requestOptions = {
+const requestOptions = {
   method: 'GET',
   headers: myHeaders,
   redirect: 'follow'
@@ -78,7 +78,7 @@ myHeaders.append("Content-Type", "application/json");
 
 
 
-var requestOptions = {
+const requestOptions = {
   method: 'GET',
   headers: myHeaders,
  
@@ -139,7 +139,7 @@ function addCard(){
     "section":  document.getElementById('createSection').value
   });
   
-  var requestOptions = {
+  const requestOptions = {
     method: 'POST',
     headers: myHeaders,
     body: raw,
@@ -155,7 +155,7 @@ function addCard(){
 
 
 function getAllCards() {
-  var requestOptions = {
+  const requestOptions = {
     method: 'GET',
     headers: {
       "Content-Type": "application/json"
@@ -179,7 +179,7 @@ function getAllCards() {
 
 
 function getCardById(cardId) {
-  var requestOptions = {
+  const requestOptions = {
     method: 'GET',
     headers: {
       "Content-Type": "application/json"
@@ -208,7 +208,7 @@ function deleteCard() {
   
 
   
-  var requestOptions = {
+  const requestOptions = {
     method: 'DELETE',
     headers: myHeaders,
 
@@ -236,7 +236,7 @@ var raw = JSON.stringify({
   "description": document.getElementById("updateDescription").value
 });
 
-var requestOptions = {
+const requestOptions = {
   method: 'PUT',
   headers: myHeaders,
   body: raw,
@@ -258,7 +258,7 @@ var raw = JSON.stringify({
   "title":document.getElementById('newTitle').value
 });
 
-var requestOptions = {
+const requestOptions = {
   method: 'PUT',
   headers: myHeaders,
   body: raw,
@@ -270,4 +270,3 @@ fetch("http://localhost:8080/api/boards/"+document.getElementById('boardsInfo').
   .then(result => console.log(result))
   .catch(error => console.log('error', error));
 }
-

@@ -20,6 +20,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/boards/{board_id}/cards")
+@CrossOrigin("*")
 public class cardController {
     @Autowired
     cardService CardService ;
