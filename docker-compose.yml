@@ -14,7 +14,7 @@ services:
   gapi:
     build: .
     ports:
-      - "9091:8080"
+      - "8080:8080"
     restart: on-failure
     depends_on:
       - gdb
@@ -22,7 +22,7 @@ services:
   gui:
     image: nginx
     ports:
-      - "9092:80"
+      - "80:80"
     volumes:
       - ./src/main/resources/static:/usr/share/nginx/html
     restart: on-failure
