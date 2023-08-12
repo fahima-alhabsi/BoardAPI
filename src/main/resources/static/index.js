@@ -1,5 +1,6 @@
 //fucntion to get card
-
+const host = window.location.host;
+const BASE_URL = "http://" + host + ":8080";
 
 
 document.getElementById("boardApiName").innerText="Choose Board ID:"
@@ -9,7 +10,7 @@ const requestOptionss = {
   redirect: 'follow'
 };
 
-fetch("http://localhost:8080/api/boards", requestOptionss)
+fetch(`${BASE_URL}/api/boards`, requestOptionss)
   .then((response) => {return response.json()})
   .then((result) => {
 result.forEach(board => {
@@ -47,7 +48,7 @@ const deleteOptions = document.getElementById('deleteExistingCard');
 const updateExistingCard = document.getElementById('updateExistingCard');
 deleteOptions.innerHTML=""
 updateExistingCard.innerHTML=""
-fetch("http://localhost:8080/api/boards/"+document.getElementById('boardsInfo').value.trim()+"/cards", requestOptions)
+fetch(`${BASE_URL}/api/boards/`+document.getElementById('boardsInfo').value.trim()+"/cards", requestOptions)
   .then((response) => {return response.json()})
   .then((resultt) =>{
     resultt.forEach(card => {
@@ -85,7 +86,7 @@ const requestOptions = {
   redirect: 'follow'
 };
 
-fetch("http://localhost:8080/api/boards/"+document.getElementById('boardsInfo').value.trim(), requestOptions)
+fetch(`${BASE_URL}/api/boards/`+document.getElementById('boardsInfo').value.trim(), requestOptions)
 .then((response) => {return response.json()})
   .then((result) =>{ 
     console.log(result)
@@ -146,7 +147,7 @@ function addCard(){
     redirect: 'follow'
   };
   
-  fetch("http://localhost:8080/api/boards/"+document.getElementById('boardsInfo').value.trim()+"/cards", requestOptions)
+  fetch(`${BASE_URL}/api/boards/`+document.getElementById('boardsInfo').value.trim()+"/cards", requestOptions)
     .then(response => response.text())
     .then(result => console.log(result))
     .catch(error => console.log('error', error));
@@ -215,7 +216,7 @@ function deleteCard() {
     redirect: 'follow'
   };
   
-  fetch("http://localhost:8080/api/boards/"+document.getElementById('boardsInfo').value.trim()+"/cards/"+cardId, requestOptions)
+  fetch(`${BASE_URL}/api/boards/`+document.getElementById('boardsInfo').value.trim()+"/cards/"+cardId, requestOptions)
     .then(response => response.text())
     .then(result => console.log(result))
     .catch(error => console.log('error', error));
@@ -243,7 +244,7 @@ const requestOptions = {
   redirect: 'follow'
 };
 
-fetch("http://localhost:8080/api/boards/"+document.getElementById('boardsInfo').value.trim()+"/cards/"+cardId, requestOptions)
+fetch(`${BASE_URL}/api/boards/`+document.getElementById('boardsInfo').value.trim()+"/cards/"+cardId, requestOptions)
   .then(response => response.text())
   .then(result => console.log(result))
   .catch(error => console.log('error', error));
@@ -265,7 +266,7 @@ const requestOptions = {
   redirect: 'follow'
 };
 
-fetch("http://localhost:8080/api/boards/"+document.getElementById('boardsInfo').value.trim(), requestOptions)
+fetch(`${BASE_URL}/api/boards/`+document.getElementById('boardsInfo').value.trim(), requestOptions)
   .then(response => response.text())
   .then(result => console.log(result))
   .catch(error => console.log('error', error));
